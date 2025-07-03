@@ -1,5 +1,6 @@
 package com.ing.core.bank.mortgage.resource;
 
+import com.ing.core.bank.mortgage.exception.MortgageRateNotFoundException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ControllerExceptionHandler {
 
   private static final String ERRORS = "errors";
+
+  @ExceptionHandler(MortgageRateNotFoundException.class)
+  public ResponseEntity<Map<String, List<String>>> handle(final MortgageRateNotFoundException ex) {
+    final Map<String, List<String>> result = new HashMap<>();
+    result.put(ERRORS, getErrorMessages(ex));
+    return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);
+  }
 
   @ExceptionHandler(HttpMessageNotReadableException.class)
   public ResponseEntity<Map<String, List<String>>> handle(final HttpMessageNotReadableException ex) {

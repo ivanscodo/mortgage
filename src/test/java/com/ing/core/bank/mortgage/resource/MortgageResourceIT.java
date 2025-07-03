@@ -128,4 +128,29 @@ class MortgageResourceIT {
     assertThat(response.getBody()).isNotNull();
     assertThat(response.getBody().getFeasible()).isFalse();
   }
+
+  @Test
+  void should_return_not_found_when_called_with_a_non_existent_maturity_period() throws JSONException {
+    final JSONObject checkRequest = new JSONObject();
+    checkRequest.put("income", BigDecimal.valueOf(20000));
+    checkRequest.put("loanValue", BigDecimal.valueOf(200000));
+    checkRequest.put("maturityPeriod", 222);
+    checkRequest.put("homeValue", BigDecimal.valueOf(300000));
+
+    final HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.APPLICATION_JSON);
+
+    final HttpEntity<String> httpRequest =
+        new HttpEntity<>(checkRequest.toString(), headers);
+
+    final ResponseEntity<MortgageCheckDto> response = restTemplate.postForEntity(
+        "/api/mortgage-check",
+        httpRequest,
+        MortgageCheckDto.class
+    );
+
+    assertThat(HttpStatus.NOT_FOUND).isEqualTo(response.getStatusCode());
+  }
+
+
 }
