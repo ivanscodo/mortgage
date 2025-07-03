@@ -22,6 +22,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 class MortgageRateServiceTest {
 
   private MortgageRateService mortgageRateService;
+  private final BigDecimal loanIncomeTimesLimit = BigDecimal.valueOf(4);
 
   @Mock
   private AnnuityMortgageRateCalculator annuityMortgageRateCalculator;
@@ -31,7 +32,7 @@ class MortgageRateServiceTest {
 
   @BeforeEach
   void setUp() {
-    mortgageRateService = new MortgageRateService(dataLoader, annuityMortgageRateCalculator, new BigDecimal(4));
+    mortgageRateService = new MortgageRateService(dataLoader, annuityMortgageRateCalculator, loanIncomeTimesLimit);
   }
 
   @Test
