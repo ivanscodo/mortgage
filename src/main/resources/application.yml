@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: bank-mortgage-service
+
+loan:
+  incomeTimesLimit: 4
+
+data-loader:
+  mortgage-rates:
+    -
+      maturityPeriod: 60
+      interestRate: 5.0
+      last-update: "2025-07-01T12:00:00"
+    -
+      maturityPeriod: 120
+      interestRate: 6.0
+      last-update: "2025-07-01T12:00:01"
+    -
+      maturityPeriod: 180
+      interestRate: 7.0
+      last-update: "2025-07-01T12:00:02"
+    -
+      maturityPeriod: 240
+      interestRate: 8.0
+      last-update: "2025-07-01T12:00:03"
+    -
+      maturityPeriod: 300
+      interestRate: 9.0
+      last-update: "2025-07-01T12:00:03"
+    -
+      maturityPeriod: 360
+      interestRate: 10.0
+      last-update: "2025-07-01T12:00:03"

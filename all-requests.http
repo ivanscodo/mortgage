@@ -1,0 +1,14 @@
+###
+GET http://localhost:8080/api/interest-rates
+
+###
+POST http://localhost:8080/api/mortgage-check
+Content-Type: application/json
+
+{
+  "income": "2200",
+  "maturityPeriod": 60,
+  "loanValue": "19000",
+  "homeValue": "20000"
+}
+
