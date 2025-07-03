@@ -17,16 +17,16 @@ import org.springframework.stereotype.Service;
 public class MortgageRateService {
 
   private final DataLoader dataLoader;
-  private final MortgageRateCalculator mortgageRateCalculatorImpl;
+  private final MortgageRateCalculator annuityMortgageRateCalculator;
   private final BigDecimal loanIncomeTimesLimit;
 
   public MortgageRateService(
       final DataLoader dataLoader,
-      final MortgageRateCalculator mortgageRateCalculatorImpl,
+      final MortgageRateCalculator annuityMortgageRateCalculator,
       @Value("${loan.income-times-limit}") final BigDecimal loanIncomeTimesLimit
   ) {
     this.dataLoader = dataLoader;
-    this.mortgageRateCalculatorImpl = mortgageRateCalculatorImpl;
+    this.annuityMortgageRateCalculator = annuityMortgageRateCalculator;
     this.loanIncomeTimesLimit = loanIncomeTimesLimit;
   }
 
@@ -49,7 +49,7 @@ public class MortgageRateService {
   }
 
   private BigDecimal calculateMortgage(final MortgageCheckRequest mortgageCheckRequest) throws MortgageRateNotFoundException {
-    return mortgageRateCalculatorImpl.calculate(mortgageCheckRequest.getMaturityPeriod(),
+    return annuityMortgageRateCalculator.calculate(mortgageCheckRequest.getMaturityPeriod(),
         mortgageCheckRequest.getLoanValue());
   }
 

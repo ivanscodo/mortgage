@@ -10,8 +10,8 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-@ControllerAdvice
 @Slf4j
+@ControllerAdvice
 public class ControllerExceptionHandler {
 
   private static final String ERRORS = "errors";
